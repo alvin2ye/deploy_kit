@@ -6,7 +6,7 @@ class BackupMysql < DeployKit
   def cmd
     """mysqldump -u#{@db_conf[:username]} -p#{@db_conf[:password]} \
     --default-character-set=utf8 --opt --extended-insert=false \
-    --triggers -R --hex-blob --single-transaction #{@db_conf[:database]} | gzip \
+    --triggers -R --hex-blob --single-transaction #{options} #{@db_conf[:database]} | gzip \
     > #{final_filename}
     """
   end
@@ -15,5 +15,15 @@ class BackupMysql < DeployKit
     puts cmd if @verbose
     `#{cmd}`
     S3storage.new.put(final_filename) if store == "s3"
+  end
+
+  def options
+    options = []
+
+    if !@db_conf[:socket].blank?
+      options << "--socket=#{@db_conf[:socket]}"
+    end
+
+    options.join(" ")
   end
 end
