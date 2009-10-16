@@ -1,6 +1,6 @@
 class BackupMysql < DeployKit
   def final_filename
-    File.join(backup_path, "backup_mysql_#{timestamp}.gz")
+    File.join(backup_path, "#{@fu_conf[:app_name]}_backup_mysql_#{timestamp}.gz")
   end
 
   def cmd
@@ -14,5 +14,6 @@ class BackupMysql < DeployKit
   def backup
     puts cmd if @verbose
     `#{cmd}`
+    S3storage.new.put(final_filename) if store == "s3"
   end
 end

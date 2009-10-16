@@ -1,4 +1,3 @@
-class DeployKitError < Exception; end
 class DeployKitConfigError < Exception; end
 
 class DeployKit
@@ -56,7 +55,7 @@ class DeployKit
     @fu_conf[:dump_base_path] || File.join(RAILS_ROOT, 'backup')
   end
 
-  def backup
+  def backup(store)
     raise 'Called abstract method: backup'
   end
 
