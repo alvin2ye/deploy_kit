@@ -11,7 +11,7 @@ class BackupMysql < DeployKit
     """
   end
 
-  def backup
+  def backup(store)
     puts cmd if @verbose
     `#{cmd}`
     S3storage.new.put(final_filename) if store == "s3"
