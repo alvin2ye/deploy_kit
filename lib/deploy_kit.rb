@@ -1,5 +1,4 @@
 require 'rubygems'
-require 'uuid'
 require 'logger'
 require 'yaml'
 require 'active_support'
