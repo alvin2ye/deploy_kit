@@ -4,7 +4,7 @@ class BackupMysql < DeployKit
   end
 
   def cmd
-    """mysqldump -u#{@db_conf[:username]} -p#{@db_conf[:password]} \
+    """mysqldump -u\"#{@db_conf[:username]}\" -p\"#{@db_conf[:password]}\" \
     --default-character-set=utf8 --opt --extended-insert=false \
     --triggers -R --hex-blob --single-transaction #{options} #{@db_conf[:database]} | gzip \
     > #{final_filename}
