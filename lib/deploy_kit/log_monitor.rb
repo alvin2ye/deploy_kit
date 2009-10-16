@@ -24,15 +24,15 @@ class LogMonitor < DeployKit
 
   def need_send?(lines)
     result = nil
-    time = lines[0].to_s.split(" ").first
+    time = lines.to_s.split(" ").first
 
     return false if time.blank?
     if is_ms?(time)
-      if time.to_f > allow_time * 1000
+      if time.to_f > allow_time
         result = true
       end
     else
-      if time.to_f > allow_time
+      if time.to_f > allow_time * 1000
         result = true
       end
     end
