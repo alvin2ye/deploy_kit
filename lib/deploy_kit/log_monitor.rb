@@ -2,7 +2,9 @@ class LogMonitor < DeployKit
   def chekc_warning(will_sent = nil)
     mail_body = []
 
-    lines = `cat #{log_path} | grep "200 OK" | awk '{print $3 " " $0}' | sort -nr | head -n 10`
+    cmd = "cat #{log_path} | grep \"200 OK\" | awk '{print $3 \" \" $0}' | sort -nr | head -n 10"
+    puts cmd if @verbose
+    lines = `#{cmd}`
     return if !need_send?(lines)
 
    if !will_sent.blank?
