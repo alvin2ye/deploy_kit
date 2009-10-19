@@ -1,0 +1,4 @@
+production:
+  bucket_name: <app name>
+  access_key_id: xxx
+  secret_access_key: xxx

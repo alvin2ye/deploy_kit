@@ -3,6 +3,21 @@ $:.unshift(File.dirname(__FILE__) + '/../lib')
 require 'deploy_kit'
 
 namespace :deploy do
+  desc "rake deploy:setup copy amazon_s3.yml.sample, deploy_kit.yml.sample"
+  task :setup do
+    ['amazon_s3.yml.sample', 'deploy_kit.yml.sample'].each do |file|
+      srcfile = File.join(File.dirname(__FILE__), '..', 'config', file)
+      destfile = File.join(RAILS_ROOT, 'config', file)
+
+      if File.exist?(destfile)
+        puts "\nTarget file: #{destfile}\n ... already exists.  Aborting.\n\n"
+      else
+        FileUtils.cp(srcfile, destfile)
+        puts "cp config/#{file} config/#{file.gsub('.sample', '')}"
+      end
+    end
+  end
+
   desc "rake deploy:backup_mysql or rake deploy:backup_mysql STORE=s3"
   task :backup_mysql do
     BackupMysql.new.backup(ENV["STORE"])
