@@ -1,5 +1,5 @@
 class LogMonitor < DeployKit
-  def chekc_warning(will_sent = nil)
+  def check_warning(will_sent = nil)
     cmd = "cat #{log_path} | grep \"200 OK\" | awk '{print $3 \" \" $0}' | sort -nr | head -n 10"
     puts cmd if @verbose
     lines = `#{cmd}`

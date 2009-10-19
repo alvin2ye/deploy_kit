@@ -49,6 +49,6 @@ end
 namespace :monitor do
   desc "or rake monitor:slow_log SEND_MAIL=true"
   task :slow_log do
-    LogMonitor.new.chekc_warning(ENV["SEND_MAIL"])
+    LogMonitor.new.check_warning(ENV["SEND_MAIL"])
   end
 end
