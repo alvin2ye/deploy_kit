@@ -5,11 +5,11 @@ class LogMonitor < DeployKit
     lines = `#{cmd}`
     return if !need_send?(lines)
 
-   if !will_sent.blank?
-     send_mail(lines)
-   else
-     puts lines
-   end
+    if !will_sent.blank?
+      send_mail(lines)
+    else
+      puts lines
+    end
   end
 
   def allow_time
