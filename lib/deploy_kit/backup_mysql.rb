@@ -1,6 +1,6 @@
 class BackupMysql < DeployKit
   def final_filename
-    @final_filename ||= File.join(backup_path, "#{@fu_conf[:app_name]}_backup_mysql_#{timestamp}.gz")
+    File.join(backup_path, "#{@fu_conf[:app_name]}_backup_mysql_#{timestamp}.gz")
   end
 
   def cmd

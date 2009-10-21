@@ -39,8 +39,8 @@ class DeployKit
     end
   end
 
-  def timestamp 
-    Time.current.strftime("%Y-%m-%d_%H%M%S")
+  def timestamp
+    @timestamp ||= Time.now.strftime("%Y-%m-%d_%H%M%S")
   end
 
   def create_dirs
