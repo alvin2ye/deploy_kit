@@ -30,7 +30,7 @@ class LogMonitor < DeployKit
         result = true
       end
     else
-      if time.to_f > allow_time * 1000
+      if time.to_f > (allow_time / 1000)
         result = true
       end
     end
