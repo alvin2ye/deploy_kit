@@ -27,6 +27,11 @@ namespace :deploy do
   task :backup_log do
     BackupLog.new.backup(ENV["STORE"])
   end
+
+  desc "Clear files in date, rake deploy:clear or rake deploy:clear BACKUP_PATH=/tmp/*.log DAYS=10 defaut BACKUP_PATH: RAILS_ROOT/config/deploy_kit.yml key dump_base_path or 'RAILS_ROOT/backup/*.gz' DAYS: config key default_clear_days"
+  task :clear do
+    ClearFile.new.clear(ENV["BACKUP_PATH"], ENV["DAYS"])
+  end
 end
 
 namespace :s3 do

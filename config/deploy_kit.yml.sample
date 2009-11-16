@@ -3,3 +3,4 @@ production:
   allow_time_ms: 1000
   from_mail: xxx@gmail.com
   to_mail: xxx@googlegroups.com
+  default_clear_days: 7
